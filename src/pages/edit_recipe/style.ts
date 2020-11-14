@@ -5,10 +5,8 @@ const Style = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-
+        marginBottom: 15,
         
-
-        paddingBottom: 5
     },
 
     containerForm:{

@@ -1,22 +1,60 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, Text, Modal } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import api from '../../services/connection-api'
 
 import {Feather} from '@expo/vector-icons'
 
 import style from './styles'
 import { RectButton, TextInput } from 'react-native-gesture-handler';
 
+import AuthContext from '../../context/auth_context'
+import { useNavigation } from '@react-navigation/native';
+
+interface Categoria{
+    id: number,
+    nome: string
+}
+
+
 
 
 const Header: React.FC = () =>{
-    const [picker, setPicker] = useState<string>('')
-    const [modalVisible, setModalVisible] = useState(false)
+    const [picker, setPicker] = useState<number>()
+    const [modalVisible, setModalVisible] = useState<boolean>(false)
+
+    const [categories, setCatogories] = useState([])
+
+    const navigation = useNavigation()
+
+    function GoBack(){
+        navigation.goBack()
+    }
+
+    useEffect(() => {
+        api.get('/categories').then(response =>{
+            setCatogories(response.data)
+        })
+    })
+
+    function modalVisibleTrue(){
+        setModalVisible(true)
+    }
+
+    function modalVisiblefalse(){
+        setModalVisible(false)
+
+    }
+
+    const {logOut} = useContext(AuthContext)
+    function handlerLogOut(){
+        logOut()
+    }
+
+    console.log(modalVisible)
 
     return(
         <View style={style.container}>
-            
-
             <View
                 style={style.containerTitle}
             >
@@ -27,36 +65,12 @@ const Header: React.FC = () =>{
                     </Text>
 
                 <RectButton 
-                    onPress = {()=>{setModalVisible(true)}}
+                    onPress = {handlerLogOut}
                     style={style.buttonLogout}>
                         <Text style={style.textLogout}>sair</Text>
                     </RectButton> 
 
 
-                <Modal
-                        visible={modalVisible}
-                        animationType="slide"
-                        transparent={true}
-
-                    >
-                        <View style={style.containerModal}>
-                            <Text
-                                style={style.textModal}
-                            >
-                                Deseja realmente sair do sistema
-                            </Text>
-                            <View style={style.containerButtonModal}>
-                                <RectButton style={style.buttonExit}>
-                                    <Text style={style.textButtonModal}>Sair</Text>
-                                </RectButton>
-                                <RectButton 
-                                    onPress={()=>{setModalVisible(!modalVisible)}}
-                                    style={style.buttonCancel}>
-                                    <Text style={style.textButtonModal}>Cancelar</Text>
-                                </RectButton>
-                            </View>
-                        </View>
-                    </Modal>    
             </View>
 
                
@@ -66,22 +80,19 @@ const Header: React.FC = () =>{
                     
                     selectedValue={picker}
                     style={style.picker}
-                    onValueChange={(itemValue) => setPicker(itemValue as string)}
+                    onValueChange={(itemValue) => setPicker(itemValue as number)}
 
                     >
-                        <Picker.Item label="Bolos e tortas doces" value="Bolos e tortas doces"/>
-                        <Picker.Item label="Carnes" value="Carnes"/>
-                        <Picker.Item label="Aves" value="Aves"/>
-                        <Picker.Item label="Peixes e frutos do mar" value="Peixes e frutos do mar"/>
-                        <Picker.Item label="Saladas, molhos e acompanhamentos" value="Saladas, molhos e acompanhamentos"/>
-                        <Picker.Item label="Soṕas" value="Soṕas"/>
-                        <Picker.Item label="Massas" value="Massas"/>
-                        <Picker.Item label="Bebidas" value="Bebidas"/>
-                        <Picker.Item label="Doces e sobremesas" value="Doces e sobremesas"/>
-                        <Picker.Item label="Lanches" value="Lanches"/>
-                        <Picker.Item label="Prato Único" value="Prato Único"/>
-                        <Picker.Item label="Light" value="Light"/>
-                        <Picker.Item label="Alimentação Saudável" value="Alimentação Saudável"/>
+                        {
+                            categories.map((cat: Categoria) => {
+                                return(
+                                    <Picker.Item 
+                                        key={cat.id}    
+                                        label={cat.nome} 
+                                        value={cat.id}/>
+                                )   
+                            } )
+                        }
                         
 
                 </Picker>

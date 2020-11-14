@@ -1,17 +1,24 @@
-import React, { useContext } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { View, Text, TextInput, KeyboardAvoidingView, Image } from 'react-native';
 import style from './style'
 
 import AuthContext from '../../context/auth_context';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
+import Logo from '../../assets/menu.png'
+
 function Login(){
 
     const {signIn} = useContext(AuthContext);
+    
+    const [name, setName] = useState('')
+    const [password, setPassword] = useState('')
 
+       
     function handleLogin(){
-        signIn();
+        signIn(name, password)
+        
     }
 
     const navigation = useNavigation();
@@ -21,39 +28,51 @@ function Login(){
 
 
     return(
-        <View style={style.container}>
-            <View style={style.form}>
-                <Text style={style.textInput}>Login</Text>
-                <TextInput 
-                    style={style.input}
-                    placeholder="digite seu usuaário" 
-                />
+        <KeyboardAvoidingView style={style.container}>
+            <View style={style.containerImage}>
+                <Image source={Logo} style={style.images}/>
+            </View>
+                
 
-                <Text style={style.textInput}>Senha</Text>
-                <TextInput 
-                    style={style.input}
-                    placeholder= "digite sua senha"  
-                    
+                
+
+                <View style={style.containerInputs}>
+                    <TextInput 
+                        style={style.input}
+                        autoCompleteType="email"
+                        
+                        value={name}
+                        placeholder="e-mail"
+                        autoCorrect={false}
+                        onChangeText={setName}
+                        
                     />
 
-                <RectButton 
-                    
-                    style={style.button}
-                    onPress={signIn}>
-                    <Text style={style.textButton}>Logar</Text>
-                </RectButton>
+                    <TextInput 
+                        style={style.input}
+                        secureTextEntry={true}
+                        value={password}
+                        placeholder="senha"
+                        onChangeText={setPassword}
+                        />
 
-                <RectButton 
-                    
-                >
-                    <Text 
-                        onPress={handleToRegister}    
-                        style={style.textRegister}>
-                        cadastre-se
-                    </Text>
-                </RectButton>
-            </View>
-        </View>
+                    <RectButton 
+                        style={style.buttonAcess}
+                        onPress={handleLogin}
+                        >
+                            <Text style={style.textButtonAcess}>Acessar</Text>
+                        </RectButton>
+
+                    <RectButton 
+                        style={style.buttonRegister}
+                        onPress={handleToRegister}
+                        >   
+                            <Text style={style.textButtonRegister}>Cadastre-se</Text>
+                        </RectButton>           
+                </View>
+            
+
+        </KeyboardAvoidingView>
     )
 }
 

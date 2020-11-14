@@ -2,62 +2,71 @@ import {StyleSheet} from 'react-native';
 
 const Style = StyleSheet.create({
     container: {
-        flex: 1, 
-        alignItems: 'center',
-        justifyContent: 'center',
+        flex: 1,
+        
 
         backgroundColor:'#ff6a28',
+
+        
     }, 
-    
-    form:{
-        width:'70%',
-        height:'70%',
 
-        backgroundColor: '#f1f1f1',
-
-        borderRadius: 10,
-      
-        justifyContent: 'center'
+    containerInputs:{
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        
     },
     
+        
     input:{
-        backgroundColor: '#FFF',
-
+        backgroundColor:'#fff' ,
         width: '80%',
-        height: 35,
-        paddingLeft: 10,
+        height: 55,
+        borderRadius: 10,
         marginBottom: 15,
-        marginLeft: 15,
-        borderRadius:10,
+        fontSize: 22
     },
     
     textInput:{
-        color: '#ff6a28',
-
-        marginLeft: 15,
         fontSize: 20,
-        marginBottom: 5,
+        color: '#fff'
     },
 
     containerButton:{
         alignItems: 'center',
-    },
-
-    button:{
-        backgroundColor:'#ff6a28',
-
-        width: '50%',
-        height: 40,
-        borderRadius: 10,
-        alignItems: 'center',
         justifyContent: 'center',
     },
 
+    button:{
+        width: 150,
+        height: 50,
+        backgroundColor: '#00e005',
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        borderRadius: 10,
+        marginBottom: 15,
+
+        
+    },
+
     textButton:{
-        color: '#FFF'
+        fontSize: 20,
+        color: '#fff',
+        
     },
 
 
+    alertCompare:{
+        
+       
+    },
+
+    textCompare:{
+        
+    }
 
 
 })

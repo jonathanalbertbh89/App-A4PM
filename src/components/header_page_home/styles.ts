@@ -97,13 +97,24 @@ const Style = StyleSheet.create({
         ========================================================
     */
 
+    
 
     containerModal:{
         flex: 1,
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+       
 
         
+    },
+    containerModal2:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#fe8c65',
+        borderRadius: 20,
+        width: 320,
+        height:180
     },
 
     textModal:{
@@ -111,6 +122,7 @@ const Style = StyleSheet.create({
     },
 
     containerButtonModal:{
+        marginTop: 15,
         alignItems: 'center',    
         flexDirection: 'row',
         justifyContent: 'space-between',

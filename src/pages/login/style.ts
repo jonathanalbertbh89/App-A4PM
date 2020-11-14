@@ -2,67 +2,71 @@ import {StyleSheet} from 'react-native';
 
 const Style = StyleSheet.create({
     container: {
-        flex: 1, 
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#ff6a28'    
+    },
 
-        backgroundColor:'#ff6a28',
-    }, 
-
-    form:{  
-        width:'55%',
-        height:'40%',
-
-        backgroundColor: '#f1f1f1',
-
-        borderRadius: 10,
-
+    containerImage:{
+        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
-    }, 
+        justifyContent: 'center',
+    },
+
+    images:{
+        width: 150,
+        height: 150,
+        borderRadius: 10,
+    },
+
+
+
+    containerInputs:{
+        flex : 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '90%',
+        marginBottom: 50
+    },
 
     input:{
-        backgroundColor: '#FFF',
-
-        width: '80%',
-        height: 35,
+        width: '100%',
+        height: 45,
+        backgroundColor: '#fff',
+        borderRadius: 10,
         paddingLeft: 10,
-        marginBottom: 15,
-        borderRadius: 10
+        marginTop:10,
+        fontSize: 18
     },
 
-    button:{
-
-        backgroundColor:'#ff6a28',
-
-        width: '50%',
-        height: 40,
-        borderRadius: 10,
+    buttonAcess:{
         alignItems: 'center',
         justifyContent: 'center',
+        width: 150,
+        height: 50,
+
+        marginTop: 15,
+        borderRadius: 10,
+
+        backgroundColor: '#00e005'
     },
 
-    textInput:{
-        color: '#ff6a28',
-
-        marginLeft: -130,
-        fontSize: 20,
-        marginBottom: 5,
-
-
-    }, 
-
-    textButton:{
-        color: '#FFF'
+    textButtonAcess:{
+        fontSize: 16, 
+        color: '#fff'
     },
 
-    textRegister:{
+    buttonRegister:{
+        marginTop: 20
+    },
 
-        color: '#ff6a28',
-
-        marginTop: 5
+    textButtonRegister:{
+        fontSize: 15,
+        color: '#0b00ec'
     }
 
+    
 
 })
 
